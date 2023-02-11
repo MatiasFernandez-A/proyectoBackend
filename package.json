@@ -1,0 +1,26 @@
+{
+  "name": "proyeto-back",
+  "version": "1.0.0",
+  "description": "Proyecto para el curso de programacion Backend en node.js",
+  "main": "archivo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatiasFernandez-A/proyectoBackend.git"
+  },
+  "keywords": [
+    "backend",
+    "node.js"
+  ],
+  "author": "Matias Fernandez Almeda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatiasFernandez-A/proyectoBackend/issues"
+  },
+  "homepage": "https://github.com/MatiasFernandez-A/proyectoBackend#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
