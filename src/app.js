@@ -8,15 +8,19 @@ const ProductManager = require("./ProductManager")
 let productManager = new ProductManager();
 
 
-app.get("/productos",async(req,res)=>{
-    let prod = await productManager.getProducts();
-    res.send(prod); 
+app.get("/products",async(req,res)=>{
+    let products = await productManager.getProducts();
+    res.send({products}); 
+})
+app.get("", async(req, res)=>{
+    let products = await productManager.getProducts()
+    let consultas = req.query
+    let {limit} = req.query
+    let cantidadLimite = products.filter(prod => prod.id <= consultas.limit)
+    res.send(cantidadLimite)
 })
 
-app.listen(8080, ()=>{
-    console.log("preparado");
-})
-
+app.listen(8080, ()=>{})
 
 
 
