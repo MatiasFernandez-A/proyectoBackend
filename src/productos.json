@@ -1,7 +1,1 @@
-[
-    {"title":"P.R.S","descripcion":"La guitarra de JHON MAYER","price":10000000,"thumbnail":"jasflad","code":73737,"stock":2,"id":1},
-    {"title":"Stratocaster","descripcion":"ahdjfkajd","price":13453000,"thumbnail":"afdfds","code":23434,"stock":244,"id":2},
-    {"title":"Telecaster","descripcion":"fakldjfklañdjfklñad","price":103453000,"thumbnail":"jasffadfalad","code":6543,"stock":2454,"id":3},
-    {"title":"Les Paul","descripcion":"fakldjfklañdjfklñad","price":197800,"thumbnail":"fasdf","code":7345723,"stock":462,"id":4},
-    {"title":"Jazzmaster","descripcion":"fakldjfklañdjfklñad","price":878478784,"thumbnail":"gafdga","code":7325625737,"stock":54,"id":5}
-]
+[[{"title":"P.R.S","descripcion":"La guitarra de JHON MAYER","price":10000000,"thumbnail":"jasflad","code":73737,"stock":2},{"title":"P.R.S","descripcion":"La guitarra de JHON MAYER","price":10000000,"thumbnail":"jasflad","code":73737,"stock":2},{"title":"P.R.S","descripcion":"La guitarra de JHON MAYER","price":10000000,"thumbnail":"jasflad","code":73737,"stock":2}]]

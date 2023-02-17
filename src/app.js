@@ -1,35 +1,19 @@
-const express = require("express");
+import express from "express"
+import productsRouter from "./routes/products.router.js";
+import cartRouter from "./routes/cart.router.js";
 
 const app = express();
 
-app.use(express.urlencoded({extended:true})); //Configuracion para que el servidor pueda interpretar mejor los datos de la url y mapearlos correctamente en el req.query
-
-const ProductManager = require("./ProductManager");
-let productManager = new ProductManager();
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 
-app.get("/products",async(req,res)=>{
-    let products = await productManager.getProducts();
-    res.send({products}); 
-});
-app.get("", async(req, res)=>{
-    let products = await productManager.getProducts();
-    let consultas = req.query;
-    let {limit} = req.query;
-    let cantidadLimite = products.filter(prod => prod.id <= consultas.limit);
-    res.send(cantidadLimite);
-});
-app.get("/products/:pid", async(req, res)=>{
-    let products = await productManager.getProducts();
-    const prodId =  products.filter(prod => prod.id == req.params.pid )
-    if(req.params.pid > 5){
-        res.send("NO EXISTE ESTE PRODUCTO");
-    } else {
-        res.send(prodId)
-    }
+app.use('/api/products', productsRouter)
+app.use('/api/carts/', cartRouter)
 
-});
-app.listen(8080, ()=>{});
+
+const SERVER_PORT = 8080;
+app.listen(SERVER_PORT, ()=>{});
 
 
 

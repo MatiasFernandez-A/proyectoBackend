@@ -1,4 +1,4 @@
-const fs = require('fs'); 
+import fs from "fs"
 const dirName = "./";
 const fileName = dirName + "productos.json";
 
@@ -8,17 +8,14 @@ class ProductManager {
         this.products = []; 
         this.path = fileName;
     }
-    addProducts = async (title, descripcion, price, thumbnail, code, stock ) => {
-        let newProduct = {
-            title, descripcion, price, thumbnail, code, stock 
-        }
-        for (const property in newProduct) {
+    addProducts = async (prod) => {
+
+/*         for (const property in newProduct) {
             if ( !newProduct[property] ) {
                 console.log(`error en ${property}`);
             }
-        }
-        newProduct.id = this.products.length +1;
-        this.products.push(newProduct)
+        } */
+        this.products.push(prod)
         await fs.promises.writeFile(this.path, JSON.stringify(this.products))
         
     }
@@ -60,4 +57,4 @@ class ProductManager {
     }
 }
 
-module.exports = ProductManager; 
+export default ProductManager;
