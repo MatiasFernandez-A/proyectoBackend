@@ -7,7 +7,7 @@ const productManager = new ProductManager();
 
 router.get("/",async(req,res)=>{
     let products = await productManager.getProducts();
-    res.send({products});
+    res.send({status:"succes", payload: products})
 });
 
 
@@ -21,24 +21,19 @@ router.get("/",async(req,res)=>{
 
 router.get("/:pid", async(req, res)=>{
     let products = await productManager.getProducts();
-    const prodId =  products.filter(prod => prod.id == req.params.pid )
-    if(req.params.pid > 5){
-        res.send("NO EXISTE ESTE PRODUCTO");
-    } else {
-        res.send(prodId)
+    const prodId =  products.find(prod => prod.id == req.params.pid )
+    if (!prodId){
+        res.send("No se encuentra ese producto")
     }
+    res.send(prodId);
 });
 
 router.post('/', async(req, res)=>{
     let prod = req.body;
     prod.id = Math.floor(Math.random()*20+1);
-    /*     if(!prod.title || !prod.description){
-        console.error("Producto no valido");
-        console.error(prod);
+    if(!prod){
         res.status(400).send({status:"Error", message:"Producto invalido, verifique los datos de entrada"});
-    } else {
-
-    } */
+    }
     await productManager.addProducts(prod)
     res.send({status:"Succes", message:`Producto agregado con exito, con id ${prod.id}`})
 
@@ -46,12 +41,23 @@ router.post('/', async(req, res)=>{
     Pienso que cuando el json pasa por el post tendria que hacerle un for o algo asi para que recorra todo el json y le agregue un id random a cada prod. 
     Reveer el video de la entrega porque creo que hablaba de como se tenia que codear esta parte  
     */
-
-
-
 })
 
+router.put('/:pid', async(req, res)=> {
+    let newProd = req.body; 
+    let prodId = req.params.pid; 
+    let prodUpdated = await productManager.updateProduct(prodId, newProd);
+    console.log(prodUpdated);
 
+});
+
+/*
+
+
+15{"title":"telecaster","description":"fdajdfjasdñf","code":"fasda","price":12312,"status":true,"stock":3423,"category":"sjfklsd","thumbnails":["fdasdkflsd","fajsdklf"]}
+
+
+*/
 
 
 

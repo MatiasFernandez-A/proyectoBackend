@@ -21,6 +21,9 @@ La ruta PUT /:pid deberá tomar un producto y actualizarlo por los campos enviad
 
 La ruta DELETE /:pid deberá eliminar el producto con el pid indicado. 
 
+
+
+
 Para el carrito, el cual tendrá su router en /api/carts/, configurar dos rutas:
 
 
