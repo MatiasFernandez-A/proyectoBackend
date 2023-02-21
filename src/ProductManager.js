@@ -9,12 +9,11 @@ class ProductManager {
         this.path = fileName;
     }
     addProducts = async (prod) => {
-
-/*         for (const property in newProduct) {
+    for (const property in newProduct) {
             if ( !newProduct[property] ) {
                 console.log(`error en ${property}`);
             }
-        } */
+        }
         this.products.push(prod)
         await fs.promises.writeFile(this.path, JSON.stringify(this.products))
         
@@ -34,28 +33,25 @@ class ProductManager {
         console.log("no se encuentra el producto")
     }
     updateProduct = async (id, newProd) => {
-    
         let newArrayReparsed = await fs.promises.readFile(this.path, "utf-8")
         let arrayReparse = JSON.parse(newArrayReparsed)
         const updateProduct = arrayReparse.map((prod)=> {
-            if (prod.id == id) {
+            if (prod.id === id) {
                 return {...prod, ...newProd}
             } else {
                 return prod;
             }
         })
-        /* hacer un parseInt en el id para porner un === en la condicion */
         arrayReparse = updateProduct;
         await fs.promises.writeFile(this.path, JSON.stringify(arrayReparse))
-        return arrayReparse;
     }
     deleteProduct = async (id) => {
         let newArray = await fs.promises.readFile(this.path, "utf-8")
         let newArrayParsed = JSON.parse(newArray)
-        const newArrayFiltered = newArrayParsed.filter(function(element){
-            return element.id !== id;
-        });
-        await fs.promises.writeFile(this.path, JSON.stringify(newArrayFiltered))
+        const index = newArrayParsed.findIndex(e => e.id === id)
+        newArrayParsed.splice(index, 1);
+    
+        await fs.promises.writeFile(this.path, JSON.stringify(newArrayParsed))
     }
 }
 

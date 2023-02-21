@@ -17,8 +17,8 @@ router.get("/",async(req,res)=>{
     let {limit} = req.query;
     let cantidadLimite = products.filter(prod => prod.id <= consultas.limit);
     res.send(cantidadLimite);
-}); */
-
+});
+ */
 router.get("/:pid", async(req, res)=>{
     let products = await productManager.getProducts();
     const prodId =  products.find(prod => prod.id == req.params.pid )
@@ -44,30 +44,24 @@ router.post('/', async(req, res)=>{
 })
 
 router.put('/:pid', async(req, res)=> {
-    let newProd = req.body; 
-    let prodId = req.params.pid; 
-    let prodUpdated = await productManager.updateProduct(prodId, newProd);
-    console.log(prodUpdated);
-
+    try{
+        let newProd = req.body; 
+        let prodId = parseInt(req.params.pid); 
+        await productManager.updateProduct(prodId, newProd);
+        res.send(`Producto actualizado. Corroborar con id ${prodId}`)
+    }catch(error){
+        console.error(error);
+    }
 });
 
-/*
-
-
-15{"title":"telecaster","description":"fdajdfjasdñf","code":"fasda","price":12312,"status":true,"stock":3423,"category":"sjfklsd","thumbnails":["fdasdkflsd","fajsdklf"]}
-
-
-*/
-
-
-
-
-
-
-
-
-
-
+router.delete('/:pid', async(req, res)=>{
+    try{
+        let prodId = parseInt(req.params.pid);
+        await productManager.deleteProduct(prodId);
+    }catch(error){
+        console.log(error);
+    }
+});
 
 
 
