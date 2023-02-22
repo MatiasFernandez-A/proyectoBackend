@@ -9,14 +9,11 @@ class ProductManager {
         this.path = fileName;
     }
     addProducts = async (prod) => {
-    for (const property in newProduct) {
-            if ( !newProduct[property] ) {
-                console.log(`error en ${property}`);
-            }
-        }
-        this.products.push(prod)
-        await fs.promises.writeFile(this.path, JSON.stringify(this.products))
-        
+        let productos = await fs.promises.readFile(this.path, "utf-8");
+        let productParsed = JSON.parse(productos);
+        let newProduct = {...prod, id: productParsed.length+1};
+        productParsed.push(newProduct)
+        await fs.promises.writeFile(this.path, JSON.stringify(productParsed))
     }
     getProducts = async () => {
         let productos = await fs.promises.readFile(this.path, "utf-8")
@@ -50,7 +47,6 @@ class ProductManager {
         let newArrayParsed = JSON.parse(newArray)
         const index = newArrayParsed.findIndex(e => e.id === id)
         newArrayParsed.splice(index, 1);
-    
         await fs.promises.writeFile(this.path, JSON.stringify(newArrayParsed))
     }
 }

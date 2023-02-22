@@ -21,7 +21,7 @@ router.get("/",async(req,res)=>{
  */
 router.get("/:pid", async(req, res)=>{
     let products = await productManager.getProducts();
-    const prodId =  products.find(prod => prod.id == req.params.pid )
+    const prodId =  products.some(prod => prod.id == req.params.pid )
     if (!prodId){
         res.send("No se encuentra ese producto")
     }
@@ -30,7 +30,6 @@ router.get("/:pid", async(req, res)=>{
 
 router.post('/', async(req, res)=>{
     let prod = req.body;
-    prod.id = Math.floor(Math.random()*20+1);
     if(!prod){
         res.status(400).send({status:"Error", message:"Producto invalido, verifique los datos de entrada"});
     }
