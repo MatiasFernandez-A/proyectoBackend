@@ -5,18 +5,22 @@ const router = Router();
 const cartManager = new CartManager()
 
 router.post('/', async(req, res)=>{
-    await cartManager.addCarrito()
+    await cartManager.createCart()
 })
 
-/* router.get('/:cid', (req, res)=>{
-
+router.get('/:cid', async(req, res)=>{
+    const cartId = parseInt(req.params.cid)
+    const cartFound = await cartManager.findCart(cartId)
+    res.send(cartFound)
 })
 
-router.post('/:cid/product/:pid', (req, res)=>{
-    
+router.post('/:cid/product/:pid', async(req, res)=>{
+    const cartId = parseInt(req.params.cid); 
+    const prodId = parseInt(req.params.pid);
+    await cartManager.addProductToCart(cartId, prodId);
 })
 
-router.post('/', (req, res)=>{
+/* router.post('/', (req, res)=>{
     
 })
  */
