@@ -30,13 +30,20 @@ class CartManager {
     addProductToCart = async(cid, pid) => {
         let cart = await fs.promises.readFile(this.path, "utf-8"); 
         let cartParsed = JSON.parse(cart);
-        let cartFound = cartParsed.find(cart => cart.id === cid)
         let newProd = {
             product: pid,
             quantity: 1
         }
-        cartFound.products.push(newProd);// hasta aca pushea el objeto
-        await fs.promises.writeFile(this.path, JSON.stringify(cartFound))
+        cartParsed.forEach(e => {
+            if(e.id === cid && e.products == []){/* Si le pongo && no crea al prod
+            pero si el product existe solo me lo incrementa cuando cambio la condicion a || */
+                e.products.push(newProd)
+            } else if (e.id === cid && e.products !== []){
+                e.products[0].quantity++
+            }
+        });
+
+        await fs.promises.writeFile(this.path, JSON.stringify(cartParsed))
     }
 
 }
