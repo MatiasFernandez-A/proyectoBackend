@@ -34,27 +34,8 @@ class CartManager {
             product: pid,
             quantity: 1
         }
-
-        /*         
-        cartParsed.forEach(e => {
-            if (e.id === cid && e.products == []) {
-                e.products.push(newProd)
-                } else if (e.id === cid && e.products !== []) {
-                e.products[0].quantity++
-                }
-                }); */
-
         const index = cartParsed.findIndex(cart => cart.id === cid)
-
-        /*         if (!cartParsed[index].products) {
-                    cartParsed[index].products.push(newProd)
-                } else {
-                    cartParsed[index].products[0].quantity++
-                }
-         */
-
         const productAlready = cartParsed[index].products.find(product => product.product === pid);
-
         if (productAlready) {
             const prodIndex = cartParsed[index].products.findIndex(product => product.product === pid);
             cartParsed[index].products[prodIndex].quantity += 1;
@@ -64,18 +45,8 @@ class CartManager {
             const prodIndex = cartParsed[index].products.findIndex(product => product.product === pid);
             cartParsed[index].products[prodIndex].quantity = 1;
         }
-
-
-
-
-
-
-
-
-
         await fs.promises.writeFile(this.path, JSON.stringify(cartParsed))
     }
-
 }
 
 export default CartManager;

@@ -20,10 +20,4 @@ router.post('/:cid/product/:pid', async(req, res)=>{
     await cartManager.addProductToCart(cartId, prodId);
 })
 
-/* router.post('/', (req, res)=>{
-    
-})
- */
-
-
 export default router; 
