@@ -1,15 +1,64 @@
 <div>
-    <h1>Hola aca te van todos los productos de realTimeProducts</h1>
-    {{#each products}}
-        <div>
-            <p>{{this.title}}</p>
-            <p>{{this.description}}</p>
-            <p>{{this.code}}</p>
-            <p>{{this.price}}</p>
-            <p>{{this.status}}</p>
-            <p>{{this.stock}}</p>
-            <p>{{this.category}}</p>
-            <p>{{this.thumbnails}}</p>
-        </div>
-    {{/each}}
+    <h1>Envio producto por websocket</h1>
+    <form id="form">
+        <ul>
+            <li>
+                <label for="title">Titulo:</label>
+                <input type="text" id="title" name="title">
+            </li>
+            <li>
+                <label for="description">Descripcion: </label>
+                <input type="text" id="description" name="description">
+            </li>
+            <li>
+                <label for="code">Codigo: </label>
+                <input type="text" id="code" name="code">
+            </li>
+            <li>
+                <label for="price">Precio: </label>
+                <input type="text" id="price" name="price">
+            </li>
+            <li>
+                <label for="status">Estado: </label>
+                <input type="text" id="status" name="status">
+            </li>
+            </li>
+            <li>
+                <label for="stock">Stock: </label>
+                <input type="text" id="stock" name="stock">
+            </li>
+            </li>
+            <li>
+                <label for="category">Categoria: </label>
+                <input type="text" id="category" name="category">
+            </li>
+            </li>
+            <li>
+                <label for="thumbnail">Miniatura: </label>
+                <input type="text" id="thumbnail" name="thumbnail">
+            </li>
+        </ul>
+        <input type="submit" value="Enviar">
+    </form>
 </div>
+
+<p id="log"></p>
+
+{{!-- {{#each products}}
+<div>
+    <p>{{this.title}}</p>
+    <p>{{this.description}}</p>
+    <p>{{this.code}}</p>
+    <p>{{this.price}}</p>
+    <p>{{this.status}}</p>
+    <p>{{this.stock}}</p>
+    <p>{{this.category}}</p>
+    <p>{{this.thumbnails}}</p>
+</div>k
+{{/each}} --}}
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="./js/index.js"></script>
+{{!-- Siempre me toma una ruta erronea el ultimo script --}}
